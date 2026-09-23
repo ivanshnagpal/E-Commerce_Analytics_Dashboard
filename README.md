@@ -1,10 +1,10 @@
-# 🛒 Olist E-Commerce Analytics — PostgreSQL + Power BI
+# E-Commerce Analytics Dashboard — Sales, Customers & Operations 
 
 An end-to-end business intelligence project built on the **Brazilian Olist E-Commerce dataset** (~100K orders). Raw CSV data is ingested into **PostgreSQL**, transformed via **analytical SQL views**, and connected live to **Power BI via DirectQuery** to produce an 8-page interactive dashboard covering Sales, Customers, Logistics, Reviews, Payments, and Sellers.
 
 ---
 
-## 📌 Table of Contents
+## Table of Contents
 
 - [Project Architecture](#project-architecture)
 - [Dataset](#dataset)
@@ -18,7 +18,7 @@ An end-to-end business intelligence project built on the **Brazilian Olist E-Com
 
 ---
 
-## 🏗️ Project Architecture
+## Project Architecture
 
 ```
 CSV Files (Kaggle)
@@ -38,7 +38,7 @@ DAX Measures + DimDate Table
 
 ---
 
-## 📦 Dataset
+## Dataset
 
 **Source:** [Olist Brazilian E-Commerce — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
@@ -58,7 +58,7 @@ DAX Measures + DimDate Table
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 ### Step 1 — Create Tables
 
@@ -122,7 +122,7 @@ CREATE INDEX IF NOT EXISTS ix_reviews_order_id       ON olist_order_reviews_data
 
 ---
 
-## 🔍 SQL Views (BI Layer)
+## SQL Views (BI Layer)
 
 Run `sql/4_bi_views.sql`. These views act as the clean, optimized data layer consumed by Power BI — avoiding heavy raw table joins at report time.
 
@@ -191,7 +191,7 @@ FROM olist_orders_dataset o
 JOIN olist_customers_dataset c ON c.customer_id = o.customer_id;
 ```
 
-### `bi_fact_sales` ⭐ (Main view used in Power BI)
+### `bi_fact_sales` (Main view used in Power BI)
 The master denormalized view joining all dimensions into one flat table for Power BI consumption.
 
 ```sql
@@ -233,7 +233,7 @@ GROUP BY op.order_id;
 
 ---
 
-## 📊 Power BI Report
+## Power BI Report
 
 - **Connection Mode:** DirectQuery (live connection to PostgreSQL)
 - **Primary Table:** `bi_fact_sales` view
@@ -261,9 +261,9 @@ ADDCOLUMNS(
 
 ---
 
-## 📐 DAX Measures — Complete Reference
+## DAX Measures — Complete Reference
 
-### 🔵 Base Measures
+### Base Measures
 
 ```dax
 Revenue =
@@ -343,7 +343,7 @@ DIVIDE ( [Delivered Orders] - [Late Orders], [Delivered Orders] )
 
 ---
 
-### 🟡 Time Intelligence Measures
+### Time Intelligence Measures
 
 ```dax
 Revenue YTD =
@@ -383,7 +383,7 @@ CALCULATE(
 
 ---
 
-### 🟢 Customer Measures
+### Customer Measures
 
 ```dax
 Total_Customer =
@@ -419,7 +419,7 @@ CALCULATE(
 
 ---
 
-### 🟠 Logistics & Delivery Measures
+### Logistics & Delivery Measures
 
 ```dax
 Avg Delivery Days =
@@ -441,7 +441,7 @@ DIVIDE ( [Late Orders], [Delivered Orders] )
 
 ---
 
-### 🔴 Review Sentiment Measures
+### Review Sentiment Measures
 
 ```dax
 Positive Reviews % =
@@ -487,7 +487,7 @@ SWITCH(
 
 ---
 
-### 🟣 Payment Measures
+### Payment Measures
 
 ```dax
 Payment Value =
@@ -515,7 +515,7 @@ DIVIDE ( [Avg Installments], [Orders] )
 
 ---
 
-### ⚪ Seller Measures
+### Seller Measures
 
 ```dax
 Sellers =
@@ -531,7 +531,7 @@ DIVIDE ( [Revenue], [Sellers] )
 
 ---
 
-### ⚫ Drillthrough
+### Drillthrough
 
 ```dax
 Drill Title =
@@ -543,7 +543,7 @@ COALESCE ( SELECTEDVALUE ( 'public bi_fact_sales'[category] ), "All" )
 ---
 
 
-## 📊 Dashboard Preview
+## Dashboard Preview
 
 ### 1. Executive Overview
 ![Executive Overview](assets/screenshots/overview.png)
@@ -585,7 +585,7 @@ COALESCE ( SELECTEDVALUE ( 'public bi_fact_sales'[category] ), "All" )
 
 ---
 
-## ⚙️ How to Run This Project
+## How to Run This Project
 
 ### Prerequisites
 - PostgreSQL 14+ with pgAdmin
@@ -613,10 +613,10 @@ COALESCE ( SELECTEDVALUE ( 'public bi_fact_sales'[category] ), "All" )
 
 ---
 
-## 📁 Folder Structure
+## Folder Structure
 
 ```
-olist-ecommerce-analytics/
+ecommerce-analytics-dashboard/
 │
 ├── README.md
 │
@@ -641,5 +641,3 @@ olist-ecommerce-analytics/
 - Dataset: [Olist Brazilian E-Commerce on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
-
-*Built as a learning project to practice end-to-end BI development: data ingestion → SQL modeling → analytical views → Power BI dashboard with DAX.*
