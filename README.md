@@ -15,6 +15,8 @@ An end-to-end business intelligence project built on the **Brazilian Olist E-Com
 - [Dashboard Pages](#dashboard-pages)
 - [How to Run This Project](#how-to-run-this-project)
 - [Folder Structure](#folder-structure)
+- [References](#references)
+- [Connect](#connect)
 
 ---
 
@@ -636,8 +638,14 @@ ecommerce-analytics-dashboard/
 
 ---
 
-## 📎 References
+## References
 
 - Dataset: [Olist Brazilian E-Commerce on Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 ---
+
+### Connect
+
+**Vansh Nagpal**
+
+[LinkedIn](https://www.linkedin.com/in/vansh-nagpal-vn011) • [GitHub](https://github.com/ivanshnagpal)
