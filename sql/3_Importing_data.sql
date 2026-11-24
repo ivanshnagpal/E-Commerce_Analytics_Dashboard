@@ -1,21 +1,36 @@
--- Orders
-CREATE INDEX IF NOT EXISTS ix_orders_order_id ON olist_orders_dataset(order_id);
-CREATE INDEX IF NOT EXISTS ix_orders_customer_id ON olist_orders_dataset(customer_id);
-CREATE INDEX IF NOT EXISTS ix_orders_purchase_date ON olist_orders_dataset(order_purchase_timestamp);
+-- ==========================================
+-- IMPORTING AND VERIFYING OLIST DATA
+-- Database: olist_db
+-- Database platform: PostgreSQL
+-- ==========================================
 
--- Order Items
-CREATE INDEX IF NOT EXISTS ix_items_order_id ON olist_order_items_dataset(order_id);
-CREATE INDEX IF NOT EXISTS ix_items_product_id ON olist_order_items_dataset(product_id);
-CREATE INDEX IF NOT EXISTS ix_items_seller_id ON olist_order_items_dataset(seller_id);
+-- CSV files were imported into the respective
+-- tables using pgAdmin 4 Import/Export feature.
 
--- Customers
-CREATE INDEX IF NOT EXISTS ix_customers_customer_id ON olist_customers_dataset(customer_id);
-CREATE INDEX IF NOT EXISTS ix_customers_state ON olist_customers_dataset(customer_state);
+-- 1. Verify customers
+SELECT COUNT(*) AS total_customers
+FROM olist_customers_dataset;
 
--- Payments
-CREATE INDEX IF NOT EXISTS ix_payments_order_id ON olist_order_payments_dataset(order_id);
+-- 2. Verify orders
+SELECT COUNT(*) AS total_orders
+FROM olist_orders_dataset;
 
--- Reviews
-CREATE INDEX IF NOT EXISTS ix_reviews_order_id ON olist_order_reviews_dataset(order_id);
+-- 3. Verify products
+SELECT COUNT(*) AS total_products
+FROM olist_products_dataset;
 
+-- 4. Verify sellers
+SELECT COUNT(*) AS total_sellers
+FROM olist_sellers_dataset;
 
+-- 5. Verify order items
+SELECT COUNT(*) AS total_order_items
+FROM olist_order_items_dataset;
+
+-- 6. Verify payments
+SELECT COUNT(*) AS total_payments
+FROM olist_order_payments_dataset;
+
+-- 7. Verify reviews
+SELECT COUNT(*) AS total_reviews
+FROM olist_order_reviews_dataset;
