@@ -42,7 +42,6 @@ DAX Measures + DimDate Table
 
 ## Dataset
 
-**Source:** [Olist Brazilian E-Commerce — Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
 
 | File | Description |
 |---|---|
